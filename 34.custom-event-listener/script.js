@@ -1,72 +1,69 @@
-// const showMessage = () => {
-//   console.log("Hello after 3 seconds");
+// const task1 = (callback) => {
+//   setTimeout(() => {
+//     console.log("Task 1 completed");
+//     callback();
+//   }, 3000);
 // };
 
-// setTimeout(() => {
-//   showMessage();
-// }, 3000);
+// const task2 = (callback) => {
+//   setTimeout(() => {
+//     console.log("Task 2 completed");
+//     callback();
+//   }, 2000);
+// };
 
-// setTimeout(() => {
-//   console.log("Hello after 3 seconds");
-// }, 3000);
+// const task3 = (callback) => {
+//   setTimeout(() => {
+//     console.log("Task 3 completed");
+//     callback();
+//   }, 1000);
+// };
 
-// let counter = 0;
-// const intervalId = setInterval(() => {
-//   counter++;
-//   console.log(counter);
-
-//   if (counter >= 5) {
-//     clearInterval(intervalId);
-//   }
-// }, 1000);
-
-// console.log("Starting non Blocking Operations");
-
-// for (let i = 0; i < 1e9; i++) {}
-
-// console.log("Finished Blocking Operations");
-
-// console.log("Starting non Blocking Operations");
-
-// setTimeout(() => {}, 4000);
-// console.log("Finished non Blocking Operations");
-
-// function logMessage(callback) {
-//   callback();
-// }
-
-// logMessage(function () {
-//   console.log("Hello this a simples Callback FN");
+// task1(() => {
+//   task2(() => {
+//     task3(() => {});
+//   });
 // });
 
-// function logMessage(callback) {
-//   const test = callback();
-//   return test;
-// }
-
-// const test1 = logMessage(() => {
-//   return "Hello Bitch";
-// });
-
-// console.log(test1);
-
-// const logMessageHOF = (callback) => {
-//   const greeting = callback("Agnes", "Agge");
-//   return greeting;
-// };
-
-// const logMessageCallbackFn = (firstName, lastName) => {
-//   return `Hello ${firstName} ${lastName} this is a simples cb`;
-// };
-
-// const test = logMessageHOF(logMessageCallbackFn);
-// console.log(test);
-
-const calculateSumHOF = (a, b, callback) => {
-  const result = a + b;
-  callback(result);
+//
+const userData = { id: 1, name: "Agnes Appia" };
+const usersPosts = [
+  { id: 101, content: "Post 1" },
+  { id: 102, content: "Post 2" },
+];
+const postComments = {
+  101: ["Comment 1", "Comment 2"],
+  102: ["Comment 1", "Comment 2"],
 };
 
-calculateSumHOF(2, 3, (result) => {
-  console.log(result);
+const fetchUserData = (userId, callback) => {
+  console.log("Fetching user data");
+  setTimeout(() => {
+    callback(userData);
+  }, 1000);
+};
+const fetchUserPosts = (userId, callback) => {
+  console.log("Fetching users posts");
+  setTimeout(() => {
+    callback(usersPosts);
+  }, 1000);
+};
+const fetchUserComments = (postId, callback) => {
+  console.log("Fetching post comments");
+  setTimeout(() => {
+    callback(postComments[postId || []]);
+  }, 1000);
+};
+
+fetchUserData(1, function (userData) {
+  console.log(userData);
+
+  fetchUserPosts(userData.id, function (userPosts) {
+    userPosts.forEach((post) => {
+      console.log(post);
+      fetchUserComments(post.id, function (comments) {
+        console.log("Comments", comments);
+      });
+    });
+  });
 });

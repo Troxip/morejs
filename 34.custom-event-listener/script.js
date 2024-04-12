@@ -10,14 +10,23 @@
 //   console.log("Hello after 3 seconds");
 // }, 3000);
 
-const timeOutId = setTimeout(() => {
-  console.log("This will not displayed");
-}, 5000);
+// let counter = 0;
+// const intervalId = setInterval(() => {
+//   counter++;
+//   console.log(counter);
 
-console.log("Timeout scheduled");
-clearTimeout(timeOutId);
-console.log(timeOutId);
+//   if (counter >= 5) {
+//     clearInterval(intervalId);
+//   }
+// }, 1000);
 
-setInterval(() => {
-  console.log("Hello");
-}, 1000);
+// console.log("Starting non Blocking Operations");
+
+// for (let i = 0; i < 1e9; i++) {}
+
+// console.log("Finished Blocking Operations");
+
+console.log("Starting non Blocking Operations");
+
+setTimeout(() => {}, 4000);
+console.log("Finished non Blocking Operations");

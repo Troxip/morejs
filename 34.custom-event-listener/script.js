@@ -26,7 +26,38 @@
 
 // console.log("Finished Blocking Operations");
 
-console.log("Starting non Blocking Operations");
+// console.log("Starting non Blocking Operations");
 
-setTimeout(() => {}, 4000);
-console.log("Finished non Blocking Operations");
+// setTimeout(() => {}, 4000);
+// console.log("Finished non Blocking Operations");
+
+// function logMessage(callback) {
+//   callback();
+// }
+
+// logMessage(function () {
+//   console.log("Hello this a simples Callback FN");
+// });
+
+// function logMessage(callback) {
+//   const test = callback();
+//   return test;
+// }
+
+// const test1 = logMessage(() => {
+//   return "Hello Bitch";
+// });
+
+// console.log(test1);
+
+const logMessageHOF = (callback) => {
+  const greeting = callback("Agnes", "Agge");
+  return greeting;
+};
+
+const logMessageCallbackFn = (firstName, lastName) => {
+  return `Hello ${firstName} ${lastName} this is a simples cb`;
+};
+
+const test = logMessageHOF(logMessageCallbackFn);
+console.log(test);

@@ -50,14 +50,23 @@
 
 // console.log(test1);
 
-const logMessageHOF = (callback) => {
-  const greeting = callback("Agnes", "Agge");
-  return greeting;
+// const logMessageHOF = (callback) => {
+//   const greeting = callback("Agnes", "Agge");
+//   return greeting;
+// };
+
+// const logMessageCallbackFn = (firstName, lastName) => {
+//   return `Hello ${firstName} ${lastName} this is a simples cb`;
+// };
+
+// const test = logMessageHOF(logMessageCallbackFn);
+// console.log(test);
+
+const calculateSumHOF = (a, b, callback) => {
+  const result = a + b;
+  callback(result);
 };
 
-const logMessageCallbackFn = (firstName, lastName) => {
-  return `Hello ${firstName} ${lastName} this is a simples cb`;
-};
-
-const test = logMessageHOF(logMessageCallbackFn);
-console.log(test);
+calculateSumHOF(2, 3, (result) => {
+  console.log(result);
+});

@@ -1,18 +1,18 @@
-const divideNumbers = (dividen, divisor, callback) => {
-  setTimeout(() => {
-    if (divisor === 0) {
-      callback(new Error("Cannot divide by zero"), null);
-    } else {
-      callback(null, dividen / divisor);
-    }
-  }, 1000);
-};
-
-divideNumbers(10, 2.3, function (error, result) {
-  if (error) {
-    console.log("Error:", error.message);
-    return;
+//Creation
+function simpleCallback(success, cb) {
+  console.log("Callback Fn Called");
+  if (success) {
+    cb(null, "The operation was successful");
   } else {
-    console.log("Result:", result);
+    cb("The operation failed", null);
   }
+}
+
+simpleCallback(true, (err, result) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(result);
+  }
+  console.log("done");
 });
